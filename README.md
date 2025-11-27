@@ -30,7 +30,7 @@
   - Performing various experiments like Hyperparameter Tuning, Feature Importance, Confusion Matrix, Cross-Validation, Precision, Recall, F1 Score, Classification report, ROC and AUC Curve
 ### Steps included 
 #### Imported tools & libraries
-* Data & plotting: pandas, numpy, matplotlib, seaborn
+* Data & plotting: pandas, numpy, matplotlib, seaborn, scikit-learn
 * ML models: LogisticRegression, KNeighborsClassifier, RandomForestClassifier
 * Model selection: train_test_split, cross_val_score, RandomizedSearchCV, GridSearchCV
 * Metrics: confusion_matrix, classification_report, precision_score, recall_score, f1_score, RocCurveDisplay
