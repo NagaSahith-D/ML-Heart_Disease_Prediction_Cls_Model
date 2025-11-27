@@ -17,11 +17,17 @@
 * target - (1 = heart disease, 0 = no disease)
 ### Workflow Approach
 * Problem
+  - what kind of problem we trying to solve?
 * Data
+  - what kind of data can we use or what data do we have?
 * Evaluation
+  - If the model reaches >=90% accuracy (also considered recall/f1 score) while predicting whther a patient has heart disease or not, we can pursue this one.
 * Features
+  - Getting information about different sections of data and features in data.
 * Modelling
+  - What models can we try here from classification.
 * Experimentation
+  - Performing various experiments like Hyperparameter Tuning, Feature Importance, Confusion Matrix, Cross-Validation, Precision, Recall, F1 Score, Classification report, ROC and AUC Curve
 ### Steps included 
 #### Imported tools & libraries
 * Data & plotting: pandas, numpy, matplotlib, seaborn
