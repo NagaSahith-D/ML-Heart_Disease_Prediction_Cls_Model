@@ -94,49 +94,57 @@
       - False positives: 8
       - False negatives: 1
       - True positives: 37
+  - ROC curve using RocCurveDisplay.from_estimator(gs_log_reg, X_test, y_test)
+#### Cross-validated metrics with the “best” Logistic Regression
+* Created clf = LogisticRegression(C=0.38566, solver="liblinear")
+* Used 5-fold cross-validation over the full dataset:
+  - Mean CV Accuracy: ~0.84
+  - Mean CV Precision: ~0.82
+  - Mean CV Recall: ~0.92
+  - Mean CV F1: ~0.86
+* Plotted these metrics as a bar chart.
+#### Model interpretability – feature importance
+* Used logistic regression coefficients.
+* Found that features like sex, thal, cp, ca, oldpeak have higher absolute coefficients, meaning they’re more influential in the prediction.
+#### Model saving and re-loading
+* Saved tuned model with joblib using:
+  - from joblib import dump, load
+* Loaded it back and checked predictions
+* Confirmed the loaded model gives the same performance.
+### Core ML steps you performed
+  - I have touched all the main steps of a supervised ML project.
+* Problem definition - Binary classification: predict heart disease (yes/no).
+* Data loading - Read CSV using pandas.
+* Data exploration & sanity checks - Shape, head, distribution, missing values.
+* EDA & domain insights - Target balance, sex distribution, chest pain types, age vs heart rate, correlations.
+* Feature/label separation - X and y.
+* Train–test split - Hold-out evaluation for generalization.
+* Baseline modeling - Logistic Regression, KNN, Random Forest.
+* Model comparison - Compare accuracy across models.
+* Hyperparameter tuning - KNN (neighbors), RandomForest (RandomizedSearch), LogisticRegression (GridSearch).
+* Evaluation with multiple metrics - Accuracy, precision, recall, F1, confusion matrix, ROC curve.
+* Cross-validation - More robust metrics via cross_val_score.
+* Model interpretability - Coefficient-based feature importance.
+* Model persistence - Save and load model with joblib.
+### Acheived results
+* I have ended up with a tuned Logistic Regression model.
+* Achieves about 86% accuracy on the test set.
+* Has high recall (~0.97) for the heart disease class (which is I believe good for medical problems where missing a positive case is costly).
+* Balanced precision and F1-score for the positive class (~0.82 precision, ~0.89 F1)
+* Generalizes reasonably well according to 5-fold cross-validation metrics.
+* Acheived all these results by performing hypertuning, comparing multiple algorithms etc.
+### Key Learnings
+* During this project, I learned how to:
+  - Perform Exploratory Data Analysis (EDA) on a real-world health dataset.
+  - Build and compare multiple classification models (Logistic Regression, KNN, Random Forest).
+  - Use hyperparameter tuning techniques.
+  - Manual parameter sweeps (e.g., KNN neighbors)
+  - RandomizedSearchCV and GridSearchCV
+  - Evaluate models with multiple metrics beyond accuracy:
+  - Precision, recall, F1-score, confusion matrix, ROC curve
+  - Use cross-validation to obtain more reliable performance estimates.
+  - Interpret Logistic Regression coefficients to understand feature importance.
+  - Save and load machine learning models using joblib for future use.
+#### This is just a practice project where I have used the skills that i have learned so far. I believe there can be differnt ways to tune a hyperparameter which may lead to better accuracy ( or either Recall score/F1 score).
 
-ROC curve using RocCurveDisplay.from_estimator(gs_log_reg, X_test, y_test)
 
-Cross-validated metrics with the “best” Logistic Regression
-
-Created clf = LogisticRegression(C=0.38566, solver="liblinear")
-
-Used 5-fold cross-validation over the full dataset:
-
-Mean CV Accuracy: ~0.84
-
-Mean CV Precision: ~0.82
-
-Mean CV Recall: ~0.92
-
-Mean CV F1: ~0.86
-
-Plotted these metrics as a bar chart.
-
-Model interpretability – feature importance
-
-Used logistic regression coefficients:
-
-feature_dict = dict(zip(df.columns, list(clf.coef_[0])))
-feature_df = pd.DataFrame(feature_dict, index=[0])
-feature_df.T.plot.bar(title="Feature Importance", legend=False)
-
-
-Found that features like sex, thal, cp, ca, oldpeak have higher absolute coefficients, meaning they’re more influential in the prediction.
-
-Model saving and re-loading
-
-Saved tuned model with joblib:
-
-from joblib import dump, load
-dump(gs_log_reg, filename="gs-logistic-regression-model.joblib")
-
-
-Loaded it back and checked predictions:
-
-loaded_joblib_model = load("gs-logistic-regression-model.joblib")
-y_preds_joblib = loaded_joblib_model.predict(X_test)
-evaluate_preds(y_test, y_preds_joblib)
-
-
-Confirmed the loaded model gives the same performance.
