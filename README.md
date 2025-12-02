@@ -21,7 +21,7 @@
 * Data
   - what kind of data can we use or what data do we have?
 * Evaluation
-  - If the model reaches >=90% accuracy (also considered recall/f1 score) while predicting whther a patient has heart disease or not, we can pursue this one.
+  - If the model reaches >=90% (considered recall/f1 score, accuracy) while predicting whther a patient has heart disease or not, we can pursue this one.
 * Features
   - Getting information about different sections of data and features in data.
 * Modelling
